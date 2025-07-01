@@ -193,4 +193,4 @@ github "https://github.com/PrincessOkaroni"
 ## Licence
 MIT License
 
-Copyright (c) 2025 AfyaRekodi.
+Copyright (c) 2025 AfyaRekodi. All Rights Reserved.
