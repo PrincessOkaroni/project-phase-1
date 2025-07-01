@@ -1,26 +1,68 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "receptionist1",
       "password": "pass123",
       "role": "Receptionist"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "doctor1",
       "password": "pass123",
       "role": "Doctor"
     },
     {
-      "id": 3,
+      "id": "3",
       "username": "labtech1",
       "password": "pass123",
       "role": "Lab Technician"
     },
     {
-      "id": 4,
+      "id": "4",
       "username": "pharmacist1",
+      "password": "pass123",
+      "role": "Pharmacist"
+    },
+    {
+      "id": "42bd",
+      "username": "princess",
+      "password": "passd123",
+      "role": "Receptionist"
+    },
+    {
+      "id": "3dec",
+      "username": "peter",
+      "password": "pass123",
+      "role": "Doctor"
+    },
+    {
+      "id": "59d7",
+      "username": "purity",
+      "password": "pass123",
+      "role": "Lab Technician"
+    },
+    {
+      "id": "74d4",
+      "username": "mary",
+      "password": "pass123",
+      "role": "Receptionist"
+    },
+    {
+      "id": "1c50",
+      "username": "john",
+      "password": "pass123",
+      "role": "Doctor"
+    },
+    {
+      "id": "39e8",
+      "username": "george",
+      "password": "pass123",
+      "role": "Lab Technician"
+    },
+    {
+      "id": "3ac1",
+      "username": "stella",
       "password": "pass123",
       "role": "Pharmacist"
     }
@@ -28,62 +70,13 @@
   "patients": [
     {
       "id": "KE123456",
-      "name": "John Mwangi",
-      "age": 35,
+      "name": "John Mwang'i",
+      "age": 36,
       "gender": "Male",
       "contact": "+254712345678",
       "visits": [],
       "nextVisit": null,
       "status": "Registered"
-    },
-    {
-      "id": "KE789012",
-      "name": "Mary Wanjiku",
-      "age": 63,
-      "gender": "Female",
-      "contact": "+254723456789",
-      "visits": [
-        {
-          "date": "2025-06-20",
-          "stage": "Examination",
-          "weight": 70.5,
-          "height": 165,
-          "bp": "140/90",
-          "diagnosis": "Suspected Hypertension",
-          "notes": "High BP observed",
-          "nextStep": "Lab"
-        },
-        {
-          "date": "2025-06-21",
-          "stage": "Lab",
-          "testType": "Blood Test",
-          "results": "Elevated BP confirmed",
-          "diagnosis": "Hypertension confirmed"
-        },
-        {
-          "date": "2025-06-22",
-          "stage": "Review",
-          "diagnosis": "Chronic Hypertension",
-          "prescription": "Amlodipine 5mg",
-          "notes": "Monitor BP weekly"
-        },
-        {
-          "date": "2025-06-23",
-          "stage": "Dispensed",
-          "drugs": "Amlodipine 5mg"
-        },
-        {
-          "date": "2025-06-23",
-          "stage": "Scheduled",
-          "diagnosis": "Scheduled follow-up",
-          "notes": "BP check"
-        }
-      ],
-      "nextVisit": {
-        "date": "2025-06-26",
-        "reason": "BP check"
-      },
-      "status": "Scheduled"
     },
     {
       "id": "KE345678",
@@ -114,6 +107,67 @@
       "visits": [],
       "nextVisit": null,
       "status": "Registered"
+    },
+    {
+      "id": "28734210",
+      "name": " lucky",
+      "age": 40,
+      "gender": "Female",
+      "contact": "+254728740373",
+      "visits": [
+        {
+          "date": "2025-07-01",
+          "stage": "Examination",
+          "weight": 56,
+          "height": 5.7,
+          "bp": "120/80",
+          "diagnosis": "malaria",
+          "notes": "headache, vomiting",
+          "nextStep": "Lab"
+        }
+      ],
+      "nextVisit": null,
+      "status": "Examined"
+    },
+    {
+      "id": "41952114",
+      "name": "Okaroni Purity",
+      "age": 23,
+      "gender": "Female",
+      "contact": "+254728740371",
+      "visits": [
+        {
+          "date": "2025-07-01",
+          "stage": "Examination",
+          "weight": 56,
+          "height": 5.6,
+          "bp": "120/80",
+          "diagnosis": "malaria",
+          "notes": "stomachache, vomiting ",
+          "nextStep": "Lab"
+        },
+        {
+          "date": "2025-07-01",
+          "stage": "Lab",
+          "testType": "blood test",
+          "results": "positive",
+          "diagnosis": "malaria"
+        },
+        {
+          "date": "2025-07-01",
+          "stage": "Review",
+          "diagnosis": "malaria",
+          "prescription": "paracetamol, amoxillin, al",
+          "notes": "jkjnc"
+        },
+        {
+          "date": "2025-07-01",
+          "stage": "Dispensed",
+          "drugs": "paracetamol, amoxillin, al"
+        }
+      ],
+      "nextVisit": null,
+      "status": "Dispensed"
     }
   ]
 }
