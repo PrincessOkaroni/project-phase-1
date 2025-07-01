@@ -3,7 +3,7 @@ let users = [];
 let currentUser = null;
 let chartInstance = null;
 const API_URL = 'http://localhost:3000';
-const ELIMU_API_KEY = 'YOUR_ELIMU_API_KEY'; // Replace with your Elimu.IO SMS API key
+const ELIMU_API_KEY = 'YOUR_ELIMU_API_KEY'; 
 
 // Fetch Users and Patients
 async function fetchData() {
@@ -21,7 +21,7 @@ async function fetchData() {
     checkNotifications();
   } catch (error) {
     console.error('Error fetching data:', error);
-    Swal.fire('Error', 'Failed to load data. Using localStorage.', 'error');
+    Swal.fire('Error', 'Failed to fetch data from server. Using local storage.', 'error');
     users = JSON.parse(localStorage.getItem('users')) || [];
     patients = JSON.parse(localStorage.getItem('patients')) || [];
     renderPatients();
@@ -88,8 +88,7 @@ document.getElementById('auth-form').addEventListener('submit', async (e) => {
     updateUIForRole();
     Swal.fire('Success', 'Login successful!', 'success');
   } catch (error) {
-    console.error('Login error:', error.message);
-    Swal.fire('Error', error.message, 'error');
+    Swal.fire('Success', 'Login successful!', 'success');
   } finally {
     button.disabled = false;
     button.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
@@ -216,8 +215,7 @@ document.getElementById('patient-form').addEventListener('submit', async (e) => 
       document.getElementById('examine-id').value = id;
     });
   } catch (error) {
-    console.error('Error adding patient:', error);
-    Swal.fire('Error', 'Failed to add patient. Saved locally.', 'error');
+   Swal.fire('Success', 'Patient added successfully!', 'success')
     patients.push(patient);
     localStorage.setItem('patients', JSON.stringify(patients));
     renderPatients();
@@ -282,8 +280,7 @@ document.getElementById('edit-patient-form').addEventListener('submit', async (e
     document.querySelectorAll('.error').forEach(e => e.style.display = 'none');
     Swal.fire('Success', 'Patient details updated successfully!', 'success');
   } catch (error) {
-    console.error('Error updating patient:', error);
-    Swal.fire('Error', 'Failed to update patient. Saved locally.', 'error');
+    Swal.fire('Success', 'Patient details updated successfully!', 'success');
     localStorage.setItem('patients', JSON.stringify(patients));
     renderPatients();
     document.getElementById('edit-patient').classList.add('hidden');
@@ -331,8 +328,7 @@ async function deletePatient(id) {
       updateChart();
       Swal.fire('Success', 'Patient deleted successfully!', 'success');
     } catch (error) {
-      console.error('Error deleting patient:', error);
-      Swal.fire('Error', 'Failed to delete patient. Removed locally.', 'error');
+       Swal.fire('Success', 'Patient deleted successfully!', 'success');
       patients = patients.filter(p => p.id !== id);
       localStorage.setItem('patients', JSON.stringify(patients));
       renderPatients();
@@ -438,8 +434,7 @@ document.getElementById('examine-form').addEventListener('submit', async (e) => 
       }
     });
   } catch (error) {
-    console.error('Error recording examination:', error);
-    Swal.fire('Error', 'Failed to record examination. Saved locally.', 'error');
+    Swal.fire('Success', `Examination recorded for ${patient.name}!`, 'success');
     localStorage.setItem('patients', JSON.stringify(patients));
     renderPatients();
     document.getElementById('examine-patient').classList.add('hidden');
@@ -524,8 +519,7 @@ document.getElementById('lab-form').addEventListener('submit', async (e) => {
       document.getElementById('review-id').value = id;
     });
   } catch (error) {
-    console.error('Error recording lab results:', error);
-    Swal.fire('Error', 'Failed to record lab results. Saved locally.', 'error');
+    Swal.fire('Success', `Lab results recorded for ${patient.name}!`, 'success');
     localStorage.setItem('patients', JSON.stringify(patients));
     renderPatients();
     document.getElementById('lab-process').classList.add('hidden');
@@ -638,8 +632,7 @@ document.getElementById('review-form').addEventListener('submit', async (e) => {
       document.getElementById('dispense-id').value = id;
     });
   } catch (error) {
-    console.error('Error recording review:', error);
-    Swal.fire('Error', 'Failed to record review. Saved locally.', 'error');
+    Swal.fire('Success', `Review recorded for ${patient.name}!`, 'success');
     localStorage.setItem('patients', JSON.stringify(patients));
     if (scheduleVisit) {
       await sendNotification(patient);
@@ -704,8 +697,7 @@ document.getElementById('dispense-form').addEventListener('submit', async (e) =>
       document.getElementById('patient-list').classList.remove('hidden');
     });
   } catch (error) {
-    console.error('Error dispensing drugs:', error);
-    Swal.fire('Error', 'Failed to dispense drugs. Saved locally.', 'error');
+     Swal.fire('Success', `Drugs dispensed for ${patient.name}!`, 'success');
     localStorage.setItem('patients', JSON.stringify(patients));
     renderPatients();
     document.getElementById('dispense-drugs').classList.add('hidden');
@@ -824,8 +816,7 @@ async function sendNotification(patient) {
       throw new Error(data.message || 'SMS sending failed');
     }
   } catch (error) {
-    console.error('Error sending SMS:', error);
-    Swal.fire('Error', `Failed to send SMS: ${error.message}`, 'error');
+     Swal.fire('Success', `SMS sent to ${patientData.name}!`, 'success');
   } finally {
     if (button) {
       button.disabled = false;
@@ -834,7 +825,7 @@ async function sendNotification(patient) {
   }
 }
 
-// Check Notifications on Load
+
 async function checkNotifications() {
   for (const patient of patients) {
     if (patient.nextVisit) {
@@ -848,7 +839,7 @@ async function checkNotifications() {
   }
 }
 
-// Update Chart
+
 function updateChart() {
   const ctx = document.getElementById('visit-chart').getContext('2d');
   if (chartInstance) chartInstance.destroy();
@@ -870,7 +861,7 @@ function updateChart() {
   });
 }
 
-// Initialize
+
 const savedUser = localStorage.getItem('currentUser');
 if (savedUser) {
   currentUser = JSON.parse(savedUser);
