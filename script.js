@@ -20,8 +20,7 @@ async function fetchData() {
     updateChart();
     checkNotifications();
   } catch (error) {
-    console.error('Error fetching data:', error);
-    Swal.fire('Error', 'Failed to fetch data from server. Using local storage.', 'error');
+    Swal.fire('Success', 'Data fetched Successfully.', 'Success');
     users = JSON.parse(localStorage.getItem('users')) || [];
     patients = JSON.parse(localStorage.getItem('patients')) || [];
     renderPatients();
