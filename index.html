@@ -1,503 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AfyaRekodi - Patients Tracker</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div id="auth-container" class="auth-container">
-        <h2><i class="fas fa-user-lock"></i> Login / Signup</h2>
-        <form id="auth-form">
-          <div class="input-group">
-            <input
-              type="text"
-              id="username"
-              placeholder="Username"
-              required
-              aria-label="Username"
-            />
-            <span class="error" id="username-error"></span>
-          </div>
-          <div class="input-group">
-            <input
-              type="password"
-              id="password"
-              placeholder="Password"
-              required
-              aria-label="Password"
-            />
-            <span class="error" id="password-error"></span>
-          </div>
-          <div class="input-group">
-            <select id="role" required aria-label="Role">
-              <option value="">Select Role</option>
-              <option value="Receptionist">Receptionist</option>
-              <option value="Doctor">Doctor</option>
-              <option value="Lab Technician">Lab Technician</option>
-              <option value="Pharmacist">Pharmacist</option>
-            </select>
-            <span class="error" id="role-error"></span>
-          </div>
-          <button type="submit" id="login-btn" aria-label="Login">
-            <i class="fas fa-sign-in-alt"></i> Login
-          </button>
-          <button type="button" id="signup-btn" aria-label="Signup">
-            <i class="fas fa-user-plus"></i> Signup
-          </button>
-        </form>
-      </div>
-      <header hidden>
-        <h1><i class="fas fa-hospital"></i> AfyaRekodi</h1>
-        <div class="user-info">
-          <span id="current-user"></span>
-          <button id="logout-btn" aria-label="Logout">
-            <i class="fas fa-sign-out-alt"></i> Logout
-          </button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AfyaRekodi - Patients Tracker</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div id="auth-container" class="auth-container">
+      <h2><i class="fas fa-user-lock"></i> Login / Signup</h2>
+      <form id="auth-form">
+        <div class="input-group">
+          <input type="text" id="username" placeholder="Username" required aria-label="Username">
+          <span class="error" id="username-error"></span>
         </div>
-      </header>
-      <main hidden>
-        <section id="add-patient" class="hidden" aria-label="Add a new patient">
-          <h2><i class="fas fa-user-plus"></i> Add Patient</h2>
-          <form id="patient-form">
-            <div class="input-group">
-              <input
-                type="text"
-                id="name"
-                placeholder="Name"
-                required
-                aria-label="Patient name"
-              />
-              <span class="error" id="name-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="text"
-                id="id-number"
-                placeholder="ID Number"
-                required
-                aria-label="Patient ID number"
-              />
-              <span class="error" id="id-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="number"
-                id="age"
-                placeholder="Age (0-150)"
-                min="0"
-                max="150"
-                required
-                aria-label="Patient age"
-              />
-              <span class="error" id="age-error"></span>
-            </div>
-            <div class="input-group">
-              <select id="gender" required aria-label="Patient gender">
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-              <span class="error" id="gender-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="tel"
-                id="contact"
-                placeholder="Phone (+2547xxxxxxxx)"
-                pattern="\+2547[0-9]{8}"
-                required
-                aria-label="Patient phone"
-              />
-              <span class="error" id="phone-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="text"
-                id="pharmacy"
-                placeholder="Pharmacy (e.g., Kemsa)"
-                required
-                aria-label="Pharmacy"
-              />
-              <span class="error" id="pharmacy-error"></span>
-            </div>
-            <button type="submit" aria-label="Add patient">
-              <i class="fas fa-plus"></i> Add Patient
-            </button>
-          </form>
-        </section>
-        <section
-          id="edit-patient"
-          class="hidden"
-          aria-label="Edit patient details"
-        >
-          <h2><i class="fas fa-edit"></i> Edit Patient Details</h2>
-          <form id="edit-patient-form">
-            <div class="input-group">
-              <input
-                type="text"
-                id="edit-id"
-                readonly
-                aria-label="Patient ID for editing"
-              />
-              <span class="error" id="edit-id-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="text"
-                id="edit-name"
-                placeholder="Name"
-                required
-                aria-label="Edit patient name"
-              />
-              <span class="error" id="edit-name-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="number"
-                id="edit-age"
-                placeholder="Age (0-150)"
-                min="0"
-                max="150"
-                required
-                aria-label="Edit patient age"
-              />
-              <span class="error" id="edit-age-error"></span>
-            </div>
-            <div class="input-group">
-              <select
-                id="edit-gender"
-                required
-                aria-label="Edit patient gender"
-              >
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-              <span class="error" id="edit-gender-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="tel"
-                id="edit-contact"
-                placeholder="Phone (+2547xxxxxxxx)"
-                pattern="\+2547[0-9]{8}"
-                required
-                aria-label="Edit patient phone"
-              />
-              <span class="error" id="edit-phone-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="text"
-                id="edit-pharmacy"
-                placeholder="Pharmacy (e.g., Kemsa)"
-                required
-                aria-label="Edit pharmacy"
-              />
-              <span class="error" id="edit-pharmacy-error"></span>
-            </div>
-            <button type="submit" aria-label="Save changes">
-              <i class="fas fa-save"></i> Save Changes
-            </button>
-            <button type="button" id="cancel-edit" aria-label="Cancel edit">
-              <i class="fas fa-times"></i> Cancel
-            </button>
-          </form>
-        </section>
-        <section
-          id="examine-patient"
-          class="hidden"
-          aria-label="Examine a patient"
-        >
-          <h2><i class="fas fa-stethoscope"></i> Examine Patient</h2>
-          <form id="examine-form">
-            <div class="input-group">
-              <input
-                type="text"
-                id="examine-id"
-                placeholder="Patient ID"
-                required
-                aria-label="Patient ID for examination"
-              />
-              <span class="error" id="examine-id-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="number"
-                id="weight"
-                placeholder="Weight (kg)"
-                step="0.1"
-                required
-                aria-label="Patient weight"
-              />
-              <span class="error" id="weight-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="number"
-                id="height"
-                placeholder="Height (cm)"
-                step="0.1"
-                required
-                aria-label="Patient height"
-              />
-              <span class="error" id="height-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="text"
-                id="bp"
-                placeholder="Blood Pressure (e.g., 120/80)"
-                required
-                aria-label="Patient blood pressure"
-              />
-              <span class="error" id="bp-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="text"
-                id="diagnosis"
-                placeholder="Diagnosis (e.g., Malaria)"
-                required
-                aria-label="Patient diagnosis"
-              />
-              <span class="error" id="diagnosis-error"></span>
-            </div>
-            <div class="input-group">
-              <textarea
-                id="examine-notes"
-                placeholder="Examination Report"
-                rows="4"
-                required
-                aria-label="Examination report"
-              ></textarea>
-              <span class="error" id="examine-notes-error"></span>
-            </div>
-            <div class="input-group">
-              <select
-                id="next-step"
-                required
-                aria-label="Next step after examination"
-              >
-                <option value="">Select Next Step</option>
-                <option value="Lab">Send to Lab</option>
-                <option value="Pharmacy">Send to Pharmacy</option>
-              </select>
-              <span class="error" id="next-step-error"></span>
-            </div>
-            <button type="submit" aria-label="Record examination">
-              <i class="fas fa-save"></i> Record Examination
-            </button>
-          </form>
-        </section>
-        <section
-          id="lab-process"
-          class="hidden"
-          aria-label="Process lab results"
-        >
-          <h2><i class="fas fa-vial"></i> Process Lab Results</h2>
-          <form id="lab-form">
-            <div class="input-group">
-              <input
-                type="text"
-                id="lab-id"
-                placeholder="Patient ID"
-                required
-                aria-label="Patient ID for lab"
-              />
-              <span class="error" id="lab-id-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="text"
-                id="lab-test"
-                placeholder="Test Type (e.g., Blood Test)"
-                required
-                aria-label="Lab test type"
-              />
-              <span class="error" id="lab-test-error"></span>
-            </div>
-            <div class="input-group">
-              <textarea
-                id="lab-results"
-                placeholder="Lab Results"
-                rows="4"
-                required
-                aria-label="Lab results"
-              ></textarea>
-              <span class="error" id="lab-results-error"></span>
-            </div>
-            <div class="input-group">
-              <textarea
-                id="lab-diagnosis"
-                placeholder="Lab Diagnosis"
-                rows="4"
-                required
-                aria-label="Lab diagnosis"
-              ></textarea>
-              <span class="error" id="lab-diagnosis-error"></span>
-            </div>
-            <button type="submit" aria-label="Record lab results">
-              <i class="fas fa-save"></i> Record Lab Results
-            </button>
-          </form>
-        </section>
-        <section
-          id="review-patient"
-          class="hidden"
-          aria-label="Review patient after lab"
-        >
-          <h2><i class="fas fa-notes-medical"></i> Review Patient</h2>
-          <form id="review-form">
-            <div class="input-group">
-              <input
-                type="text"
-                id="review-id"
-                placeholder="Patient ID"
-                required
-                aria-label="Patient ID for review"
-              />
-              <span class="error" id="review-id-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="text"
-                id="review-diagnosis"
-                placeholder="Final Diagnosis"
-                required
-                aria-label="Final diagnosis"
-              />
-              <span class="error" id="review-diagnosis-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="text"
-                id="prescription"
-                placeholder="Prescribed Medication"
-                required
-                aria-label="Prescribed medication"
-              />
-              <span class="error" id="prescription-error"></span>
-            </div>
-            <div class="input-group">
-              <textarea
-                id="review-notes"
-                placeholder="Review Notes"
-                rows="4"
-                aria-label="Review notes"
-              ></textarea>
-            </div>
-            <div class="input-group">
-              <label for="schedule-visit-checkbox">Schedule Next Visit</label>
-              <input
-                type="checkbox"
-                id="schedule-visit-checkbox"
-                aria-label="Schedule next visit"
-              />
-            </div>
-            <div class="input-group hidden" id="next-visit-group">
-              <input
-                type="date"
-                id="next-visit-date"
-                aria-label="Next visit date"
-              />
-              <span class="error" id="next-visit-date-error"></span>
-              <input
-                type="text"
-                id="next-visit-reason"
-                placeholder="Reason (e.g., Follow-up)"
-                aria-label="Reason for next visit"
-              />
-              <span class="error" id="next-visit-reason-error"></span>
-            </div>
-            <button type="submit" aria-label="Record review">
-              <i class="fas fa-save"></i> Record Review
-            </button>
-          </form>
-        </section>
-        <section id="dispense-drugs" class="hidden" aria-label="Dispense drugs">
-          <h2><i class="fas fa-pills"></i> Dispense Drugs</h2>
-          <form id="dispense-form">
-            <div class="input-group">
-              <input
-                type="text"
-                id="dispense-id"
-                placeholder="Patient ID"
-                required
-                aria-label="Patient ID for dispensing"
-              />
-              <span class="error" id="dispense-id-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="text"
-                id="drugs"
-                placeholder="Drugs Dispensed (e.g., Paracetamol)"
-                required
-                aria-label="Drugs dispensed"
-              />
-              <span class="error" id="drugs-error"></span>
-            </div>
-            <div class="input-group">
-              <input
-                type="text"
-                id="dispense-pharmacy"
-                placeholder="Pharmacy (e.g., MediPlus)"
-                required
-                aria-label="Pharmacy for dispensing"
-              />
-              <span class="error" id="dispense-pharmacy-error"></span>
-            </div>
-            <button type="submit" aria-label="Dispense drugs">
-              <i class="fas fa-save"></i> Dispense Drugs
-            </button>
-          </form>
-        </section>
-        <section id="search" aria-label="Search patients">
-          <h2><i class="fas fa-search"></i> Search Patients</h2>
-          <div class="filter-group">
-            <select id="filter-type" aria-label="Filter type">
-              <option value="name">Name</option>
-              <option value="id">ID</option>
-            </select>
-            <input
-              type="text"
-              id="search-input"
-              placeholder="Enter Name or ID"
-              aria-label="Search patients"
-            />
-            <button type="button" id="search-btn" aria-label="Search patients">
-              <i class="fas fa-search"></i> Search
-            </button>
-          </div>
-        </section>
-        <section id="patient-list" aria-label="List of patients">
-          <h2><i class="fas fa-users"></i> Patients</h2>
-          <div id="no-results" class="error hidden">Patient doesn't exist</div>
-          <div id="patients-container"></div>
-        </section>
-        <section
-          id="visit-chart-section"
-          aria-label="Patient visit frequency chart"
-        >
-          <h2><i class="fas fa-chart-bar"></i> Patient Visit Frequency</h2>
-          <canvas id="visit-chart"></canvas>
-        </section>
-      </main>
+        <div class="input-group">
+          <input type="password" id="password" placeholder="Password" required aria-label="Password">
+          <span class="error" id="password-error"></span>
+        </div>
+        <div class="input-group">
+          <select id="role" required aria-label="Role">
+            <option value="">Select Role</option>
+            <option value="Receptionist">Receptionist</option>
+            <option value="Doctor">Doctor</option>
+            <option value="Lab Technician">Lab Technician</option>
+            <option value="Pharmacist">Pharmacist</option>
+          </select>
+          <span class="error" id="role-error"></span>
+        </div>
+        <button type="submit" id="login-btn" aria-label="Login"><i class="fas fa-sign-in-alt"></i> Login</button>
+        <button type="button" id="signup-btn" aria-label="Signup"><i class="fas fa-user-plus"></i> Signup</button>
+      </form>
     </div>
-    <script src="./script.js"></script>
-  </body>
+    <header style="display: none;">
+      <h1><i class="fas fa-hospital"></i> AfyaRekodi</h1>
+      <div class="user-info">
+        <span id="current-user"></span>
+        <button id="logout-btn" aria-label="Logout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+    </header>
+    <main style="display: none;">
+      <section id="add-patient" class="hidden" aria-label="Add a new patient">
+        <h2><i class="fas fa-user-plus"></i> Add Patient</h2>
+        <form id="patient-form">
+          <div class="input-group">
+            <input type="text" id="name" placeholder="Name" required aria-label="Patient name">
+            <span class="error" id="name-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="text" id="id-number" placeholder="ID Number" required aria-label="Patient ID number">
+            <span class="error" id="id-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="number" id="age" placeholder="Age (0-150)" min="0" max="150" required aria-label="Patient age">
+            <span class="error" id="age-error"></span>
+          </div>
+          <div class="input-group">
+            <select id="gender" required aria-label="Patient gender">
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <span class="error" id="gender-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="tel" id="contact" placeholder="Phone (+2547xxxxxxxx)" pattern="\+2547[0-9]{8}" required aria-label="Patient phone">
+            <span class="error" id="phone-error"></span>
+          </div>
+          <button type="submit" aria-label="Add patient"><i class="fas fa-plus"></i> Add Patient</button>
+        </form>
+      </section>
+      <section id="edit-patient" class="hidden" aria-label="Edit patient details">
+        <h2><i class="fas fa-edit"></i> Edit Patient Details</h2>
+        <form id="edit-patient-form">
+          <div class="input-group">
+            <input type="text" id="edit-id" readonly aria-label="Patient ID for editing">
+            <span class="error" id="edit-id-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="text" id="edit-name" placeholder="Name" required aria-label="Edit patient name">
+            <span class="error" id="edit-name-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="number" id="edit-age" placeholder="Age (0-150)" min="0" max="150" required aria-label="Edit patient age">
+            <span class="error" id="edit-age-error"></span>
+          </div>
+          <div class="input-group">
+            <select id="edit-gender" required aria-label="Edit patient gender">
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <span class="error" id="edit-gender-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="tel" id="edit-contact" placeholder="Phone (+2547xxxxxxxx)" pattern="\+2547[0-9]{8}" required aria-label="Edit patient phone">
+            <span class="error" id="edit-phone-error"></span>
+          </div>
+          <button type="submit" aria-label="Save changes"><i class="fas fa-save"></i> Save Changes</button>
+          <button type="button" id="cancel-edit" aria-label="Cancel edit"><i class="fas fa-times"></i> Cancel</button>
+        </form>
+      </section>
+      <section id="examine-patient" class="hidden" aria-label="Examine a patient">
+        <h2><i class="fas fa-stethoscope"></i> Examine Patient</h2>
+        <form id="examine-form">
+          <div class="input-group">
+            <input type="text" id="examine-id" placeholder="Patient ID" required aria-label="Patient ID for examination">
+            <span class="error" id="examine-id-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="number" id="weight" placeholder="Weight (kg)" step="0.1" required aria-label="Patient weight">
+            <span class="error" id="weight-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="number" id="height" placeholder="Height (ft)" step="0.1" min="0" max="10" required aria-label="Patient height">
+            <span class="error" id="height-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="text" id="bp" placeholder="Blood Pressure (e.g., 120/80)" required aria-label="Patient blood pressure">
+            <span class="error" id="bp-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="text" id="diagnosis" placeholder="Diagnosis (e.g., Malaria)" required aria-label="Patient diagnosis">
+            <span class="error" id="diagnosis-error"></span>
+          </div>
+          <div class="input-group">
+            <textarea id="examine-notes" placeholder="Examination Report" rows="4" required aria-label="Examination report"></textarea>
+            <span class="error" id="examine-notes-error"></span>
+          </div>
+          <div class="input-group">
+            <select id="next-step" required aria-label="Next step after examination">
+              <option value="">Select Next Step</option>
+              <option value="Lab">Send to Lab</option>
+              <option value="Pharmacy">Send to Pharmacy</option>
+            </select>
+            <span class="error" id="next-step-error"></span>
+          </div>
+          <button type="submit" aria-label="Record examination"><i class="fas fa-save"></i> Record Examination</button>
+        </form>
+      </section>
+      <section id="lab-process" class="hidden" aria-label="Process lab results">
+        <h2><i class="fas fa-vial"></i> Process Lab Results</h2>
+        <form id="lab-form">
+          <div class="input-group">
+            <input type="text" id="lab-id" placeholder="Patient ID" required aria-label="Patient ID for lab">
+            <span class="error" id="lab-id-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="text" id="lab-test" placeholder="Test Type (e.g., Blood Test)" required aria-label="Lab test type">
+            <span class="error" id="lab-test-error"></span>
+          </div>
+          <div class="input-group">
+            <textarea id="lab-results" placeholder="Lab Results" rows="4" required aria-label="Lab results"></textarea>
+            <span class="error" id="lab-results-error"></span>
+          </div>
+          <div class="input-group">
+            <textarea id="lab-diagnosis" placeholder="Lab Diagnosis" rows="4" required aria-label="Lab diagnosis"></textarea>
+            <span class="error" id="lab-diagnosis-error"></span>
+          </div>
+          <button type="submit" aria-label="Record lab results"><i class="fas fa-save"></i> Record Lab Results</button>
+        </form>
+      </section>
+      <section id="review-patient" class="hidden" aria-label="Review patient after lab">
+        <h2><i class="fas fa-notes-medical"></i> Review Patient</h2>
+        <form id="review-form">
+          <div class="input-group">
+            <input type="text" id="review-id" placeholder="Patient ID" required aria-label="Patient ID for review">
+            <span class="error" id="review-id-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="text" id="review-diagnosis" placeholder="Final Diagnosis" required aria-label="Final diagnosis">
+            <span class="error" id="review-diagnosis-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="text" id="prescription" placeholder="Prescribed Medication" required aria-label="Prescribed medication">
+            <span class="error" id="prescription-error"></span>
+          </div>
+          <div class="input-group">
+            <textarea id="review-notes" placeholder="Review Notes" rows="4" aria-label="Review notes"></textarea>
+          </div>
+          <div class="input-group">
+            <label for="schedule-visit-checkbox">Schedule Next Visit</label>
+            <input type="checkbox" id="schedule-visit-checkbox" aria-label="Schedule next visit">
+          </div>
+          <div class="input-group hidden" id="next-visit-group">
+            <input type="date" id="next-visit-date" min="2025-06-27" aria-label="Next visit date">
+            <span class="error" id="next-visit-date-error"></span>
+            <input type="text" id="next-visit-reason" placeholder="Reason (e.g., Follow-up)" aria-label="Reason for next visit">
+            <span class="error" id="next-visit-reason-error"></span>
+          </div>
+          <button type="submit" aria-label="Record review"><i class="fas fa-save"></i> Record Review</button>
+        </form>
+      </section>
+      <section id="dispense-drugs" class="hidden" aria-label="Dispense drugs">
+        <h2><i class="fas fa-pills"></i> Dispense Drugs</h2>
+        <form id="dispense-form">
+          <div class="input-group">
+            <input type="text" id="dispense-id" placeholder="Patient ID" required aria-label="Patient ID for dispensing">
+            <span class="error" id="dispense-id-error"></span>
+          </div>
+          <div class="input-group">
+            <input type="text" id="drugs" placeholder="Drugs Dispensed (e.g., Paracetamol)" required aria-label="Drugs dispensed">
+            <span class="error" id="drugs-error"></span>
+          </div>
+          <button type="submit" aria-label="Dispense drugs"><i class="fas fa-save"></i> Dispense Drugs</button>
+        </form>
+      </section>
+      <section id="search" aria-label="Search patients">
+        <h2><i class="fas fa-search"></i> Search Patients</h2>
+        <div class="filter-group">
+          <select id="filter-type" aria-label="Filter type">
+            <option value="name">Name</option>
+            <option value="id">ID</option>
+          </select>
+          <input type="text" id="search-input" placeholder="Enter Name or ID" aria-label="Search patients">
+          <button type="button" id="search-btn" aria-label="Search patients"><i class="fas fa-search"></i> Search</button>
+        </div>
+      </section>
+      <section id="patient-list" aria-label="List of patients">
+        <h2><i class="fas fa-users"></i> Patients</h2>
+        <div id="no-results" class="error hidden">Patient doesn't exist</div>
+        <div id="patients-container"></div>
+      </section>
+      <section id="visit-chart-section" aria-label="Patient visit frequency chart">
+        <h2><i class="fas fa-chart-bar"></i> Patient Visit Frequency</h2>
+        <canvas id="visit-chart"></canvas>
+      </section>
+    </main>
+  </div>
+  <script src="./script.js"></script>
+</body>
 </html>
