@@ -1,0 +1,22 @@
+{
+  "name": "project-phase-1",
+  "version": "1.0.0",
+  "description": "Patients Tracker",
+  "main": "script.js",
+  "scripts": {
+    "test": "let"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrincessOkaroni/project-phase-1.git"
+  },
+  "keywords": [
+    "let"
+  ],
+  "author": "Okaroni Purity",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PrincessOkaroni/project-phase-1/issues"
+  },
+  "homepage": "https://github.com/PrincessOkaroni/project-phase-1#readme"
+}
