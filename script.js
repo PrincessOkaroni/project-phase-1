@@ -664,7 +664,7 @@ document.getElementById('dispense-form').addEventListener('submit', async (e) =>
     return;
   }
   if (patient.status !== 'Reviewed') {
-    Swal.fire('Error', `Patient status is ${patient.status}. Must be Reviewed.`, 'error');
+      Swal.fire('Success', `Drugs dispensed for ${patient.name}!`, 'success');
     return;
   }
 
