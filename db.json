@@ -32,7 +32,6 @@
       "age": 35,
       "gender": "Male",
       "contact": "+254712345678",
-      "pharmacy": "Kemsa Pharmacy",
       "visits": [],
       "nextVisit": null,
       "status": "Registered"
@@ -43,7 +42,6 @@
       "age": 63,
       "gender": "Female",
       "contact": "+254723456789",
-      "pharmacy": "MediPlus",
       "visits": [
         {
           "date": "2025-06-20",
@@ -53,43 +51,37 @@
           "bp": "140/90",
           "diagnosis": "Suspected Hypertension",
           "notes": "High BP observed",
-          "nextStep": "Lab",
-          "pharmacy": "MediPlus"
+          "nextStep": "Lab"
         },
         {
           "date": "2025-06-21",
           "stage": "Lab",
           "testType": "Blood Test",
           "results": "Elevated BP confirmed",
-          "diagnosis": "Hypertension confirmed",
-          "pharmacy": "MediPlus"
+          "diagnosis": "Hypertension confirmed"
         },
         {
           "date": "2025-06-22",
           "stage": "Review",
           "diagnosis": "Chronic Hypertension",
           "prescription": "Amlodipine 5mg",
-          "notes": "Monitor BP weekly",
-          "pharmacy": "MediPlus"
+          "notes": "Monitor BP weekly"
         },
         {
           "date": "2025-06-23",
           "stage": "Dispensed",
-          "drugs": "Amlodipine 5mg",
-          "pharmacy": "MediPlus"
+          "drugs": "Amlodipine 5mg"
         },
         {
           "date": "2025-06-23",
           "stage": "Scheduled",
           "diagnosis": "Scheduled follow-up",
-          "notes": "BP check",
-          "pharmacy": "MediPlus"
+          "notes": "BP check"
         }
       ],
       "nextVisit": {
         "date": "2025-06-26",
-        "reason": "BP check",
-        "pharmacy": "MediPlus"
+        "reason": "BP check"
       },
       "status": "Scheduled"
     },
@@ -99,7 +91,6 @@
       "age": 42,
       "gender": "Male",
       "contact": "+254734567890",
-      "pharmacy": "GoodLife Pharmacy",
       "visits": [],
       "nextVisit": null,
       "status": "Registered"
@@ -107,10 +98,9 @@
     {
       "id": "KE901234",
       "name": "Jane Achieng",
-      "age": 19,
+      "age": 29,
       "gender": "Female",
       "contact": "+254745678901",
-      "pharmacy": "Kemsa Pharmacy",
       "visits": [],
       "nextVisit": null,
       "status": "Registered"
@@ -121,7 +111,6 @@
       "age": 50,
       "gender": "Male",
       "contact": "+254756789012",
-      "pharmacy": "Haltons Pharmacy",
       "visits": [],
       "nextVisit": null,
       "status": "Registered"
