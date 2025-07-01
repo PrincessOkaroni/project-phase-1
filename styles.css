@@ -1,0 +1,308 @@
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #333;
+  color: burlywood;
+  font-size: 16px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #222;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 25px;
+  font-style: normal;
+}
+.auth-container {
+  max-width: 400px;
+  margin: 50px auto;
+  background: #444;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+header {
+  text-align: center;
+  background:black;
+  color: thistle;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+  font-style: oblique;
+  font-weight: bold;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#logout-btn {
+  background: #dc3545;
+}
+#logout-btn:hover {
+  background: #c82333;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+section {
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+section.hidden {
+  display: none;
+}
+h2 {
+  color: #28a745;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+h2 i {
+  margin-right: 8px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  background-image: url("./images/stethoscope.jpeg");
+}
+.input-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.input-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.filter-group {
+  display: flex;
+  gap: 10px;
+  max-width: 400px;
+  align-items: center;
+}
+input,
+select,
+textarea,
+button {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 10px;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: dodgerblue;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+input[readonly] {
+  background: #e9ecef;
+}
+.error {
+  color: #dc3545;
+  font-size: 0.9rem;
+  display: none;
+}
+input:invalid + .error,
+select:invalid + .error,
+textarea:invalid + .error {
+  display: block;
+}
+#no-results {
+  text-align: center;
+  padding: 15px;
+  font-weight: bold;
+}
+#no-results.hidden {
+  display: none;
+}
+button {
+  background: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+button:hover {
+  background: #218838;
+  cursor: pointer;
+  color: orange;
+}
+button:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+.sms-sent {
+  background: #17a2b8;
+}
+.sms-sent:hover {
+  background: #138496;
+}
+.sms-sent:disabled {
+  background: #6c757d;
+}
+#signup-btn {
+  background: #007bff;
+}
+#signup-btn:hover {
+  background: #0056b3;
+  cursor: pointer;
+}
+#search-btn {
+  background: #007bff;
+  width: auto;
+  padding: 10px 20px;
+}
+#search-btn:hover {
+  background: #0056b3;
+}
+#cancel-edit {
+  background: #6c757d;
+}
+#cancel-edit:hover {
+  background: #5a6268;
+}
+#search-input {
+  flex-grow: 1;
+}
+#filter-type {
+  width: 120px;
+}
+#patients-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  background: #444;
+}
+.patient-card {
+  background: #333;
+  color: burlywood;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: transform 0.2s;
+}
+.patient-card:hover {
+  transform: scale(1.02);
+}
+.patient-card h3 {
+  margin: 0 0 10px;
+  color: #007bff;
+}
+.patient-card p {
+  margin: 5px 0;
+}
+.urgent {
+  color: #dc3545;
+  font-weight: bold;
+}
+.diagnosis {
+  color: #6f42c1;
+  font-style: italic;
+}
+.status {
+  color: #17a2b8;
+  font-weight: bold;
+}
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.edit-btn {
+  background: #ffc107;
+}
+.edit-btn:hover {
+  background: #e0a800;
+}
+.delete-btn {
+  background: #dc3545;
+}
+.delete-btn:hover {
+  background: #c82333;
+}
+#next-visit-group.hidden {
+  display: none;
+}
+#visit-chart-section {
+  max-width: 600px;
+}
+.loader {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #28a745;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  display: none;
+  margin: 0 auto;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 600px) {
+  form,
+  .filter-group,
+  #patients-container {
+    max-width: 100%;
+  }
+  section {
+    padding: 15px;
+  }
+  header h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+  button {
+    font-size: 14px;
+  }
+  .filter-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #filter-type,
+  #search-btn {
+    width: 100%;
+  }
+  .action-buttons {
+    flex-direction: column;
+  }
+}
