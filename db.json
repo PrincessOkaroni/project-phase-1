@@ -1,0 +1,130 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "receptionist1",
+      "password": "pass123",
+      "role": "Receptionist"
+    },
+    {
+      "id": 2,
+      "username": "doctor1",
+      "password": "pass123",
+      "role": "Doctor"
+    },
+    {
+      "id": 3,
+      "username": "labtech1",
+      "password": "pass123",
+      "role": "Lab Technician"
+    },
+    {
+      "id": 4,
+      "username": "pharmacist1",
+      "password": "pass123",
+      "role": "Pharmacist"
+    }
+  ],
+  "patients": [
+    {
+      "id": "KE123456",
+      "name": "John Mwangi",
+      "age": 35,
+      "gender": "Male",
+      "contact": "+254712345678",
+      "pharmacy": "Kemsa Pharmacy",
+      "visits": [],
+      "nextVisit": null,
+      "status": "Registered"
+    },
+    {
+      "id": "KE789012",
+      "name": "Mary Wanjiku",
+      "age": 63,
+      "gender": "Female",
+      "contact": "+254723456789",
+      "pharmacy": "MediPlus",
+      "visits": [
+        {
+          "date": "2025-06-20",
+          "stage": "Examination",
+          "weight": 70.5,
+          "height": 165,
+          "bp": "140/90",
+          "diagnosis": "Suspected Hypertension",
+          "notes": "High BP observed",
+          "nextStep": "Lab",
+          "pharmacy": "MediPlus"
+        },
+        {
+          "date": "2025-06-21",
+          "stage": "Lab",
+          "testType": "Blood Test",
+          "results": "Elevated BP confirmed",
+          "diagnosis": "Hypertension confirmed",
+          "pharmacy": "MediPlus"
+        },
+        {
+          "date": "2025-06-22",
+          "stage": "Review",
+          "diagnosis": "Chronic Hypertension",
+          "prescription": "Amlodipine 5mg",
+          "notes": "Monitor BP weekly",
+          "pharmacy": "MediPlus"
+        },
+        {
+          "date": "2025-06-23",
+          "stage": "Dispensed",
+          "drugs": "Amlodipine 5mg",
+          "pharmacy": "MediPlus"
+        },
+        {
+          "date": "2025-06-23",
+          "stage": "Scheduled",
+          "diagnosis": "Scheduled follow-up",
+          "notes": "BP check",
+          "pharmacy": "MediPlus"
+        }
+      ],
+      "nextVisit": {
+        "date": "2025-06-26",
+        "reason": "BP check",
+        "pharmacy": "MediPlus"
+      },
+      "status": "Scheduled"
+    },
+    {
+      "id": "KE345678",
+      "name": "Ali Hassan",
+      "age": 42,
+      "gender": "Male",
+      "contact": "+254734567890",
+      "pharmacy": "GoodLife Pharmacy",
+      "visits": [],
+      "nextVisit": null,
+      "status": "Registered"
+    },
+    {
+      "id": "KE901234",
+      "name": "Jane Achieng",
+      "age": 19,
+      "gender": "Female",
+      "contact": "+254745678901",
+      "pharmacy": "Kemsa Pharmacy",
+      "visits": [],
+      "nextVisit": null,
+      "status": "Registered"
+    },
+    {
+      "id": "KE567890",
+      "name": "Peter Otieno",
+      "age": 50,
+      "gender": "Male",
+      "contact": "+254756789012",
+      "pharmacy": "Haltons Pharmacy",
+      "visits": [],
+      "nextVisit": null,
+      "status": "Registered"
+    }
+  ]
+}
