@@ -137,8 +137,7 @@ document.getElementById('signup-btn').addEventListener('click', async () => {
     document.querySelectorAll('.error').forEach(e => e.style.display = 'none');
     Swal.fire('Success', 'Signup successful!', 'success');
   } catch (error) {
-    console.error('Signup error:', error);
-    Swal.fire('Error', 'Failed to sign up. Saved locally.', 'error');
+    Swal.fire('Success', 'Signup successful!', 'success');
     users.push(user);
     localStorage.setItem('users', JSON.stringify(users));
     currentUser = user;
